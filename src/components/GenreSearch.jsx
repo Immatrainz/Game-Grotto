@@ -77,7 +77,7 @@ const GenreSearch = () => {
   let index = 1;
   let tabList = ['Action', 'Adventure', 'Puzzle', 'RPG', 'Indie'].map(tab => {
     let tabId = 'tab' + index.toString();
-    let tabClass = `tab tab-lifted ${tabStatus[tabId] ? 'tab-active' : ''}`
+    let tabClass = `tab ${tabStatus[tabId] ? 'tab-active' : ''}`
     index++;
     return (<a id={tabId} className={tabClass} onClick={onTabClick}>{tab}</a>)
   })
@@ -87,11 +87,11 @@ const GenreSearch = () => {
     <p className='ml-5'>POPULAR GENRES</p>
     <div className='grid grid-cols-2 '>
       <div className='genre-list'>
-        <div className="tabs ">
+        <div className="tabs tabs-boxed">
           {tabList}
         </div>
         <div>
-          <ul className="menu">
+          <ul className="menu bg-secondary bg-slate-800">
             {genreList}
           </ul>
         </div>
