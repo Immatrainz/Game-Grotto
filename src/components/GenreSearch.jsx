@@ -1,12 +1,14 @@
 import React, {useState, useEffect} from 'react';
+import GamePopUp from './GamePopUp.jsx';
 const axios = require('axios');
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXbox, faPlaystation, faApple, faAndroid, faAppStore } from '@fortawesome/free-brands-svg-icons';
 
 const GenreSearch = () => {
 
-  const [genre, setGenre] = useState('Action');
+  const [ genre, setGenre ] = useState('Action');
   const [ genredList, setGenredList] = useState([]);
+  const [ selectedGame, setSelectedGame ] = useState(null);
   const [ tabStatus, setTabStatus ] = useState({
     tab1: true,
     tab2: false,
@@ -40,7 +42,7 @@ const GenreSearch = () => {
   let genreList = genredList.map(game => {
     let gameImage = `${game.background_image}`;
     return (
-      <li><a>
+      <li onMouseEnter={() => {setSelectedGame(game)}} onMouseLeave={() => {setSelectedGame(null)}}><a>
         <div className='flex flex-cols h-14 gap-x-4'>
           <img className='object-cover object-center h-12 w-20' src={gameImage}></img>
           <div>
@@ -96,6 +98,9 @@ const GenreSearch = () => {
           </ul>
         </div>
       </div>
+      {selectedGame !== null && <div className='bg-gradient-to-r from-sky-800 to-sky-400'>
+        <GamePopUp selectedGame={selectedGame}/>
+      </div>}
     </div>
     </>
   )
