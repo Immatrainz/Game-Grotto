@@ -7,6 +7,13 @@ const GenreSearch = () => {
 
   const [genre, setGenre] = useState('Action');
   const [ genredList, setGenredList] = useState([]);
+  const [ tabStatus, setTabStatus ] = useState({
+    tab1: true,
+    tab2: false,
+    tab3: false,
+    tab4: false,
+    tab5: false
+  });
 
   const platforms = {
     Xbox: <FontAwesomeIcon icon={faXbox} size='sm'/>,
@@ -18,7 +25,7 @@ const GenreSearch = () => {
 
   useEffect(() => {
     getByGenre();
-  }, []);
+  }, [genre]);
 
   const getByGenre = () => {
     axios.get('/products/genre', {params: {genre: genre}})
@@ -54,13 +61,34 @@ const GenreSearch = () => {
     )
   })
 
+  const onTabClick = (e) => {
+    let obj = {
+      tab1: false,
+      tab2: false,
+      tab3: false,
+      tab4: false,
+      tab5: false
+    };
+    obj[e.target.id] = true;
+    setTabStatus(obj);
+    setGenre(e.target.text);
+  }
+
+  let index = 1;
+  let tabList = ['Action', 'Adventure', 'Puzzle', 'RPG', 'Indie'].map(tab => {
+    let tabId = 'tab' + index.toString();
+    let tabClass = `tab tab-lifted ${tabStatus[tabId] ? 'tab-active' : ''}`
+    index++;
+    return (<a id={tabId} className={tabClass} onClick={onTabClick}>{tab}</a>)
+  })
+
   return (
+    <>
+    <p className='ml-5'>POPULAR GENRES</p>
     <div className='grid grid-cols-2 '>
       <div className='genre-list'>
         <div className="tabs ">
-          <a className="tab tab-lifted tab-active">Action</a>
-          <a className="tab tab-lifted ">Adventure</a>
-          <a className="tab tab-lifted">Shooter</a>
+          {tabList}
         </div>
         <div>
           <ul className="menu">
@@ -69,6 +97,7 @@ const GenreSearch = () => {
         </div>
       </div>
     </div>
+    </>
   )
 }
 
