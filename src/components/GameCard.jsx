@@ -1,6 +1,6 @@
 import React from 'react';
 
-const GameCard = ({ game }) => {
+const GameCard = ({ game, clickedGame, setClickedGame }) => {
   let gameImage = `${game.background_image}`;
 
     // {
@@ -57,7 +57,7 @@ const GameCard = ({ game }) => {
   // };
 
   return (
-  <div className='top-game-card text-white'>
+  <div className='top-game-card text-white' onClick={() => {setClickedGame(game)}}>
     <img className='object-cover object-center top-game-card-image' src={gameImage}></img>
     <div className='flex flex-col ml-2 mr-2 '>
       <p className='mt-2 font-bold'>{game.name}</p>
