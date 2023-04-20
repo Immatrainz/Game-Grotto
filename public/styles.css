@@ -32,3 +32,8 @@
 .genre-list {
   box-shadow: 10px 10px lightblue;
 }
+
+.game-modal-image {
+  height: 400px;
+  width: 600px;
+}

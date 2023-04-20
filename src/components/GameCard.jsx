@@ -1,7 +1,9 @@
 import React from 'react';
+import GameContext from '../index.jsx';
 
-const GameCard = ({ game, clickedGame, setClickedGame }) => {
+const GameCard = ({ game }) => {
   let gameImage = `${game.background_image}`;
+  const { clickedGame, setClickedGame } = React.useContext(GameContext);
 
     // {
   //   id: 5679,
@@ -55,9 +57,12 @@ const GameCard = ({ game, clickedGame, setClickedGame }) => {
   //     [Object]
   //   ]
   // };
+  const handleGameCardClick = () => {
+    setClickedGame(game);
+  }
 
   return (
-  <div className='top-game-card text-white' onClick={() => {setClickedGame(game)}}>
+  <div className='top-game-card text-white' onClick={handleGameCardClick}>
     <img className='object-cover object-center top-game-card-image' src={gameImage}></img>
     <div className='flex flex-col ml-2 mr-2 '>
       <p className='mt-2 font-bold'>{game.name}</p>

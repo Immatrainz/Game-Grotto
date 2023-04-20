@@ -76,3 +76,15 @@ app.get('/games/details', (req, res) => {
   })
   //console.log(req.query.id);
 })
+
+app.get('/games/trailers', (req, res) => {
+  axios.get(`https://api.rawg.io/api/games/${req.query.id}/movies`, {params: { key: '5f7521f30d86436e9fd3c6ceadefeaaa'}})
+  .then(data => {
+    //console.log(data.data.results[0].data);
+    res.send(data.data.results);
+  })
+  .catch(err => {
+    console.log(err);
+  })
+  console.log(req.query.id);
+})

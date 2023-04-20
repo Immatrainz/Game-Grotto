@@ -10,8 +10,8 @@ const NewGameCard = ({game}) => {
   return (
     <div className='new-game-card grid grid-cols-3' onClick={() => {setClickedGame(game)}}>
       <img className='col-span-2 new-game-image' src={mainImage}></img>
-      <div className='place-self-start ml-5'>
-        <h1 className='text-3xl font-bold'>{game.name}</h1>
+      <div className=' flex flex-col ml-5'>
+        <div className='place-self-start'><h1 className='text-3xl font-bold'>{game.name}</h1></div>
         {game.genres.map(genre => {
           return (<p className='m-1 pl-2 w-60 bg-slate-700 text-white'>{genre.name}</p>)
         })}
