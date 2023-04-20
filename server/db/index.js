@@ -1,15 +1,13 @@
+const mongoose = require("mongoose");
 
-const mongoose = require('mongoose');
-
-main().catch(err => console.log(err));
+main().catch((err) => console.log(err));
 
 async function main() {
-  await mongoose.connect('mongodb://localhost/gamelibrary');
+  await mongoose.connect("mongodb://localhost/gamelibrary");
 }
 
-
 const gameSchema = new mongoose.Schema({
-  id: {type: Number, unique: true},
+  id: { type: Number, unique: true },
   slug: String,
   name: String,
   released: String,
@@ -37,29 +35,40 @@ const gameSchema = new mongoose.Schema({
   clip: String,
   tags: Array,
   esrb_rating: Object,
-  short_screenshots: Array
+  short_screenshots: Array,
 });
 
-const Game = mongoose.model('Game', gameSchema);
+const Game = mongoose.model("Game", gameSchema);
 
 const topRatedGames = (data) => {
   const newGame = new Game(data);
   newGame.save();
-}
+};
 
 const getTopRatedGames = () => {
   return Game.find().limit(10);
-}
+};
 
 const getNewGames = () => {
-  return Game.find().sort({updated: -1}).limit(5);
-}
+  return Game.find().sort({ updated: -1 }).limit(5);
+};
 
 const getByGenre = (genre) => {
-  return Game.find({'genres.name': genre}).sort({rating: -1}).limit(7);
-}
+  return Game.find({ "genres.name": genre }).sort({ rating: -1 }).limit(7);
+};
+
+const getByGenre50 = (genre) => {
+  return Game.find({ "genres.name": genre }).sort({ rating: -1 }).limit(50);
+};
 
 const getAllGames = () => {
   return Game.find();
-}
-module.exports = { topRatedGames, getTopRatedGames, getNewGames, getByGenre, getAllGames }
+};
+module.exports = {
+  topRatedGames,
+  getTopRatedGames,
+  getNewGames,
+  getByGenre,
+  getByGenre50,
+  getAllGames,
+};

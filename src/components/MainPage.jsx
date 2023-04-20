@@ -7,22 +7,19 @@ import TopRatedGames from "./TopRatedGames.jsx";
 import NewGames from "./NewGames.jsx";
 import GenreSearch from "./GenreSearch.jsx";
 import GameModal from "./GameModal.jsx";
+import GenreContext from "../index.jsx";
 
 const GameContext = React.createContext({});
 
-const MainPage = () => {
-  const getByGenre = (genre) => {
-    axios
-      .get("/games/genre", { params: { genre: genre } })
-      .then((res) => {
-        setGenredList(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+const MainPage = ({ genreCatalog }) => {
+  const { clickedGenre, setClickedGenre } = useContext(GenreContext);
 
   const [clickedGame, setClickedGame] = useState({});
+
+  const handleGenreClick = (e) => {
+    console.log(e.target.innerHTML);
+    setClickedGenre(e.target.innerHTML);
+  };
 
   return (
     <div>
@@ -44,20 +41,12 @@ const MainPage = () => {
               <h3 class="card-title">Genres</h3>
 
               <div className="grid grid-cols-3 gap-2">
-                {[
-                  "Action",
-                  "Adventure",
-                  "Shooter",
-                  "RPG",
-                  "Indie",
-                  "Puzzle",
-                  "Platformer",
-                  "Racing",
-                  "Arcade",
-                ].map((genre) => {
+                {genreCatalog.map((genre) => {
                   return (
                     <NavLink to="/genres">
-                      <button className="btn">{genre}</button>
+                      <button onClick={handleGenreClick} className="btn">
+                        {genre}
+                      </button>
                     </NavLink>
                   );
                 })}

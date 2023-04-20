@@ -4132,6 +4132,10 @@ html {
   width: 20rem;
 }
 
+.flex-1 {
+  flex: 1 1 0%;
+}
+
 .shrink {
   flex-shrink: 1;
 }
@@ -4202,6 +4206,14 @@ html {
 
 .place-self-start {
   place-self: start;
+}
+
+.place-self-end {
+  place-self: end;
+}
+
+.justify-self-end {
+  justify-self: end;
 }
 
 .truncate {
@@ -4292,6 +4304,10 @@ html {
   padding: 0.5rem;
 }
 
+.p-5 {
+  padding: 1.25rem;
+}
+
 .pb-5 {
   padding-bottom: 1.25rem;
 }
@@ -4335,6 +4351,11 @@ html {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
 }
 
 .font-bold {
