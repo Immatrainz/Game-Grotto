@@ -19,7 +19,7 @@ const NewGameCard = ({ game }) => {
         </div>
         {game.genres.map((genre) => {
           return (
-            <p className="m-1 pl-2 w-60 bg-slate-700 text-white">
+            <p className="m-1 pl-2 w-60 bg-gradient-to-r from-blue-400 to-blue-800 text-white">
               {genre.name}
             </p>
           );

@@ -58,7 +58,7 @@ const getByGenre = (genre) => {
 };
 
 const getByGenre50 = (genre) => {
-  return Game.find({ "genres.name": genre }).sort({ rating: -1 }).limit(50);
+  return Game.find({ "genres.name": genre }).sort({ rating: -1 }).limit(56);
 };
 
 const getAllGames = () => {
