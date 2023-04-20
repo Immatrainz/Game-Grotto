@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+const axios = require('axios');
 import Modal from 'react-modal';
 import GameContext from '../index.jsx';
 
@@ -23,12 +24,23 @@ const GameModal = () => {
   useEffect(() => {
     if (Object.keys(clickedGame).length > 0) {
       setIsOpen(true);
+      getGameDetails();
     }
   }, [clickedGame]);
 
   const closeModal = () => {
     setIsOpen(false);
     setClickedGame({});
+  }
+
+  let getGameDetails = () => {
+    axios.get('/games/details', {params: {id: clickedGame.id}})
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => {
+      console.log(err);
+    })
   }
 
   return (

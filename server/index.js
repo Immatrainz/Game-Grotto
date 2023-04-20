@@ -53,7 +53,7 @@ app.get('/games/new', (req, res) => {
   })
 })
 
-app.get('/products/genre', (req, res) => {
+app.get('/games/genre', (req, res) => {
   console.log(req.query.genre);
   return db.getByGenre(req.query.genre)
   .then(data => {
@@ -63,4 +63,16 @@ app.get('/products/genre', (req, res) => {
     console.log(err);
   })
   res.end();
+})
+
+app.get('/games/details', (req, res) => {
+  axios.get(`https://api.rawg.io/api/games/${req.query.id}`, {params: { key: '5f7521f30d86436e9fd3c6ceadefeaaa'}})
+  .then(data => {
+    //console.log(data.data);
+    res.send(data.data);
+  })
+  .catch(err => {
+    console.log(err);
+  })
+  //console.log(req.query.id);
 })

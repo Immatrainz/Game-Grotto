@@ -30,7 +30,7 @@ const GenreSearch = () => {
   }, [genre]);
 
   const getByGenre = () => {
-    axios.get('/products/genre', {params: {genre: genre}})
+    axios.get('/games/genre', {params: {genre: genre}})
     .then(res => {
       setGenredList(res.data);
     })
