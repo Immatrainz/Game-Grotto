@@ -58,4 +58,8 @@ const getNewGames = () => {
 const getByGenre = (genre) => {
   return Game.find({'genres.name': genre}).sort({rating: -1}).limit(7);
 }
-module.exports = { topRatedGames, getTopRatedGames, getNewGames, getByGenre }
+
+const getAllGames = () => {
+  return Game.find();
+}
+module.exports = { topRatedGames, getTopRatedGames, getNewGames, getByGenre, getAllGames }

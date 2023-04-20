@@ -8,7 +8,7 @@ const axios = require('axios');
 const NewGames = () => {
 
   const [newGames, setNewGames] = useState([]);
-  const { clickedGame, setClickedGame }= useContext(GameContext);
+  const { clickedGame, setClickedGame } = useContext(GameContext);
 
   useEffect(() => {
     getNewGames()
@@ -32,9 +32,11 @@ const NewGames = () => {
 
   return (<div className='ml-5 mt-5'>
     <p>LATEST UPDATES</p>
-    <Carousel>
-      {newGamesList}
-    </Carousel>
+    <GameContext.Provider value={{clickedGame, setClickedGame}}>
+      <Carousel>
+          {newGamesList}
+      </Carousel>
+    </GameContext.Provider>
   </div>)
 }
 export default NewGames;
