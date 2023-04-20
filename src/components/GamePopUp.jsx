@@ -8,7 +8,7 @@ const GamePopUp = ({ selectedGame }) => {
         <img className='pl-7 pb-5 h-60 w-90 object-cover object-center ' src={selectedGame.background_image}></img>
         <div className=''>
           <p>Score: {selectedGame.rating}</p>
-          <p>Rating: {selectedGame.esrb_rating.name}</p>
+          <p>Rating: {selectedGame.esrb && selectedGame.esrb_rating.name}</p>
         </div>
       </div>
       <div className='grid grid-cols-2 pl-7 gap-1'>

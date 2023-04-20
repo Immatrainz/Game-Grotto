@@ -1,11 +1,11 @@
-import React from 'react';
-import GameContext from '../index.jsx';
+import React from "react";
+import { GameContext } from "./MainPage.jsx";
 
 const GameCard = ({ game }) => {
   let gameImage = `${game.background_image}`;
   const { clickedGame, setClickedGame } = React.useContext(GameContext);
 
-    // {
+  // {
   //   id: 5679,
   //   slug: 'the-elder-scrolls-v-skyrim',
   //   name: 'The Elder Scrolls V: Skyrim',
@@ -59,21 +59,24 @@ const GameCard = ({ game }) => {
   // };
   const handleGameCardClick = () => {
     setClickedGame(game);
-  }
+  };
 
   return (
-  <div className='top-game-card text-white' onClick={handleGameCardClick}>
-    <img className='object-cover object-center top-game-card-image' src={gameImage}></img>
-    <div className='flex flex-col ml-2 mr-2 '>
-      <p className='mt-2 font-bold'>{game.name}</p>
-      <p>Rating: {game.rating}</p>
-      <p>Metacritic Score: {game.metacritic}</p>
-      {game.genres.map(genre => {
-        return (<p className='m-1 pl-2 bg-slate-700'>{genre.name}</p>)
-      })}
+    <div className="top-game-card text-white" onClick={handleGameCardClick}>
+      <img
+        className="object-cover object-center top-game-card-image"
+        src={gameImage}
+      ></img>
+      <div className="flex flex-col ml-2 mr-2 ">
+        <p className="mt-2 font-bold">{game.name}</p>
+        <p>Rating: {game.rating}</p>
+        <p>Metacritic Score: {game.metacritic}</p>
+        {game.genres.map((genre) => {
+          return <p className="m-1 pl-2 bg-slate-700">{genre.name}</p>;
+        })}
+      </div>
     </div>
-  </div>
-  )
-}
+  );
+};
 
 export default GameCard;
