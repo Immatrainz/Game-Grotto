@@ -13,24 +13,27 @@ app.listen(port, () => {
 });
 
 // const options = {
-//   method: 'GET',
-//   url: 'https://api.rawg.io/api/games',
+//   method: "GET",
+//   url: "https://api.rawg.io/api/games",
 //   params: {
-//     key: '5f7521f30d86436e9fd3c6ceadefeaaa',
-//     page: 51,
-//     page_size: 40
-//   }
+//     key: "5f7521f30d86436e9fd3c6ceadefeaaa",
+//     page: 101,
+//     page_size: 40,
+//   },
 // };
 
-// axios.request(options).then(function (response) {
-//   //console.log(response);
-//   let data = response.data.results;
-//   data.forEach(game => {
-//     db.topRatedGames(game);
+// axios
+//   .request(options)
+//   .then(function (response) {
+//     //console.log(response);
+//     let data = response.data.results;
+//     data.forEach((game) => {
+//       db.topRatedGames(game);
+//     });
 //   })
-// }).catch(function (error) {
-// 	console.error(error);
-// });
+//   .catch(function (error) {
+//     console.error(error);
+//   });
 
 app.get("/games/top", (req, res) => {
   return db

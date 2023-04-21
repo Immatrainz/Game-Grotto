@@ -25,8 +25,11 @@ const MainPage = ({ genreCatalog }) => {
           className="object-contain w-14 h-14"
           src="/assets/scream.png"
         ></img>
-        SCREAM
-        <div class="dropdown">
+        <h2 className="ml-3">
+          <span className="text-5xl">G</span>AME{"\n"}
+          <span className="text-5xl">G</span>ROTTO
+        </h2>
+        <div class="dropdown ml-2 mr-5">
           <label tabindex="0" class="btn m-1">
             Genres
           </label>
@@ -41,7 +44,7 @@ const MainPage = ({ genreCatalog }) => {
                 {genreCatalog.map((genre) => {
                   return (
                     <NavLink to="/genres">
-                      <button onClick={handleGenreClick} className="btn">
+                      <button onClick={handleGenreClick} className="btn w-72">
                         {genre}
                       </button>
                     </NavLink>

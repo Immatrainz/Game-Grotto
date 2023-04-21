@@ -18,7 +18,7 @@ const customStyles = {
     boxShadow: "4px 5px 1px #9E9E9E",
     transform: "translate(-50%, -50%)",
   },
-  overlay: { zIndex: 100 },
+  overlay: { zIndex: 9999 },
 };
 
 const GameModal = () => {
