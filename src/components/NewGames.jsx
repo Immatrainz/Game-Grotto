@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { GameContext } from "./MainPage.jsx";
+import { GameContext } from "../index.jsx";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import NewGameCard from "./NewGameCard.jsx";

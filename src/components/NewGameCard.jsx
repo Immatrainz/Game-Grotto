@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { GameContext } from "./MainPage.jsx";
+import { GameContext } from "../index.jsx";
 
 const NewGameCard = ({ game }) => {
   const [mainImage, setMainImage] = useState(game.background_image);

@@ -10,7 +10,7 @@ import {
   faAppStore,
 } from "@fortawesome/free-brands-svg-icons";
 
-import { GameContext } from "./MainPage.jsx";
+import { GameContext } from "../index.jsx";
 
 const GenreSearch = () => {
   const { clickedGame, setClickedGame } = React.useContext(GameContext);

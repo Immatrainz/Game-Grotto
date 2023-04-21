@@ -1,5 +1,5 @@
 import React from "react";
-import { GameContext } from "./MainPage.jsx";
+import { GameContext } from "../index.jsx";
 
 const GameCard = ({ game }) => {
   let gameImage = `${game.background_image}`;

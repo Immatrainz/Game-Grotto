@@ -1,6 +1,5 @@
 import React from "react";
-import GenreContext from "../index.jsx";
-import { GameContext } from "./MainPage.jsx";
+import { GameContext, GenreContext } from "../index.jsx";
 const axios = require("axios");
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -12,6 +11,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 import ReactPaginate from "react-paginate";
+import GameModal from "./GameModal.jsx";
 
 const GenrePage = () => {
   const { clickedGenre, setClickedGenre } = React.useContext(GenreContext);
@@ -21,7 +21,7 @@ const GenrePage = () => {
   const [pagination, setPagination] = React.useState({
     data: gamesInThatGenre,
     offset: 0,
-    numberPerPage: 7,
+    numberPerPage: 8,
     pageCount: 0,
     currentData: [],
   });
@@ -47,7 +47,6 @@ const GenrePage = () => {
     setPagination({ ...pagination, offset });
   };
 
-  console.log(pagination.currentData);
   const getByGenre = () => {
     axios
       .get("/games/genrepage", { params: { genre: clickedGenre } })
@@ -84,42 +83,35 @@ const GenrePage = () => {
               let gameImage = `${game.background_image}`;
               return (
                 <li
-                // onClick={() => {
-                //   setClickedGame(game);
-                // }}
-                // onMouseEnter={() => {
-                //   setSelectedGame(game);
-                // }}
-                // onMouseLeave={() => {
-                //   setSelectedGame(null);
-                // }}
+                  onClick={() => {
+                    console.log(game);
+                    setClickedGame(game);
+                  }}
                 >
-                  <a>
-                    <div className="flex flex-cols h-14 gap-x-4">
-                      <img
-                        className="object-cover object-center h-12 w-20"
-                        src={gameImage}
-                      ></img>
-                      <div>
-                        <p className="text-sm">{game.name}</p>
-                        <div className="flex flex-cols gap-x-2">
-                          {game.parent_platforms.map((platform) => {
-                            return (
-                              <p className="text-xs">
-                                {platforms[platform.platform.name] ||
-                                  platform.platform.name}
-                              </p>
-                            );
-                          })}
-                        </div>
-                        <div className="flex flex-cols gap-x-2">
-                          {game.tags.slice(1, 6).map((tag) => {
-                            return <p className="text-xs">{tag.name}</p>;
-                          })}
-                        </div>
+                  <div className="flex flex-cols h-14 gap-x-4">
+                    <img
+                      className="object-cover object-center h-12 w-20"
+                      src={gameImage}
+                    ></img>
+                    <div>
+                      <p className="text-sm">{game.name}</p>
+                      <div className="flex flex-cols gap-x-2">
+                        {game.parent_platforms.map((platform) => {
+                          return (
+                            <p className="text-xs">
+                              {platforms[platform.platform.name] ||
+                                platform.platform.name}
+                            </p>
+                          );
+                        })}
+                      </div>
+                      <div className="flex flex-cols gap-x-2">
+                        {game.tags.slice(1, 6).map((tag) => {
+                          return <p className="text-xs">{tag.name}</p>;
+                        })}
                       </div>
                     </div>
-                  </a>
+                  </div>
                 </li>
               );
             })}
@@ -137,6 +129,7 @@ const GenrePage = () => {
           />
         </ul>
       </div>
+      <GameModal />
     </div>
   );
 };

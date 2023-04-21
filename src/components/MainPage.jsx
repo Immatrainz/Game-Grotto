@@ -7,14 +7,11 @@ import TopRatedGames from "./TopRatedGames.jsx";
 import NewGames from "./NewGames.jsx";
 import GenreSearch from "./GenreSearch.jsx";
 import GameModal from "./GameModal.jsx";
-import GenreContext from "../index.jsx";
-
-const GameContext = React.createContext({});
+import { GenreContext, GameContext } from "../index.jsx";
 
 const MainPage = ({ genreCatalog }) => {
   const { clickedGenre, setClickedGenre } = useContext(GenreContext);
-
-  const [clickedGame, setClickedGame] = useState({});
+  const { clickedGame, setClickedGame } = useContext(GameContext);
 
   const handleGenreClick = (e) => {
     console.log(e.target.innerHTML);
@@ -98,4 +95,4 @@ const MainPage = ({ genreCatalog }) => {
   );
 };
 
-export { MainPage, GameContext };
+export default MainPage;

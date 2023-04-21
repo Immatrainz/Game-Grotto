@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 const axios = require("axios");
 import Modal from "react-modal";
-import { GameContext } from "./MainPage.jsx";
+import { GameContext } from "../index.jsx";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 
@@ -222,7 +222,7 @@ const GameModal = () => {
                   className="game-modal-image"
                   src={gameTrailers.max}
                   controls="controls"
-                  autoPlay="true"
+                  autoPlay={true}
                 />
               )}
               {clickedGame.short_screenshots &&

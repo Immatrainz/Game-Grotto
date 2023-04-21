@@ -3,7 +3,7 @@ const axios = require("axios");
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import GameCard from "./GameCard.jsx";
-import { GameContext } from "./MainPage.jsx";
+import { GameContext } from "../index.jsx";
 
 const TopRatedGames = () => {
   const [topGames, setTopGames] = useState([]);

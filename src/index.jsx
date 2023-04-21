@@ -5,14 +5,16 @@ import {
   Route,
   NavLink,
 } from "react-router-dom";
-import { MainPage } from "./components/MainPage.jsx";
+import MainPage from "./components/MainPage.jsx";
 import GenrePage from "./components/GenrePage.jsx";
 import { createRoot } from "react-dom/client";
 
 const root = createRoot(document.getElementById("root"));
 const GenreContext = React.createContext("");
+const GameContext = React.createContext({});
 
 const App = () => {
+  const [clickedGame, setClickedGame] = useState({});
   const [clickedGenre, setClickedGenre] = useState("");
   const [genreCatalog, setGenreCatalog] = useState([
     "Action",
@@ -34,18 +36,26 @@ const App = () => {
             exact
             path="/"
             element={
-              <GenreContext.Provider value={{ clickedGenre, setClickedGenre }}>
-                <MainPage genreCatalog={genreCatalog} />
-              </GenreContext.Provider>
+              <GameContext.Provider value={{ clickedGame, setClickedGame }}>
+                <GenreContext.Provider
+                  value={{ clickedGenre, setClickedGenre }}
+                >
+                  <MainPage genreCatalog={genreCatalog} />
+                </GenreContext.Provider>
+              </GameContext.Provider>
             }
           ></Route>
           <Route
             exact
             path="/genres"
             element={
-              <GenreContext.Provider value={{ clickedGenre, setClickedGenre }}>
-                <GenrePage />
-              </GenreContext.Provider>
+              <GameContext.Provider value={{ clickedGame, setClickedGame }}>
+                <GenreContext.Provider
+                  value={{ clickedGenre, setClickedGenre }}
+                >
+                  <GenrePage />
+                </GenreContext.Provider>
+              </GameContext.Provider>
             }
           ></Route>
         </Routes>
@@ -54,5 +64,5 @@ const App = () => {
   );
 };
 
-export default GenreContext;
+export { GenreContext, GameContext };
 root.render(<App />);
