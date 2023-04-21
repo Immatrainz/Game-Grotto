@@ -51,6 +51,9 @@ const MainPage = ({ genreCatalog }) => {
             </div>
           </div>
         </div>
+        <NavLink to="/wishlist">
+          <button className="btn">Wishlist</button>
+        </NavLink>
       </h1>
       <GameContext.Provider value={{ clickedGame, setClickedGame }}>
         <NewGames />

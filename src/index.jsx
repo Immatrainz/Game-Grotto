@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import MainPage from "./components/MainPage.jsx";
 import GenrePage from "./components/GenrePage.jsx";
+import Wishlist from "./components/Wishlist.jsx";
 import { createRoot } from "react-dom/client";
 
 const root = createRoot(document.getElementById("root"));
@@ -58,6 +59,7 @@ const App = () => {
               </GameContext.Provider>
             }
           ></Route>
+          <Route exact path="/wishlist" element={<Wishlist />}></Route>
         </Routes>
       </div>
     </Router>
