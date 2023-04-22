@@ -73,9 +73,14 @@ const GenrePage = () => {
           className="object-contain w-14 h-14"
           src="/assets/scream.png"
         ></img>
-        SCREAM
+        <h2 className="ml-3 logo">
+          <span className="text-5xl">G</span>AME{"\n"}
+          <span className="text-5xl">G</span>ROTTO
+        </h2>
       </h1>
-      <h2 className="text-white text-4xl font-bold p-5">{clickedGenre}</h2>
+      <h2 className="text-white text-4xl font-bold p-5">
+        {clickedGenre.toUpperCase()}
+      </h2>
       <div>
         <ul className="menu bg-secondary bg-slate-800">
           {pagination.currentData &&

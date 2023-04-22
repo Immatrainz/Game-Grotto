@@ -3,7 +3,8 @@ const path = require("path");
 const app = express();
 const port = 3000;
 const axios = require("axios");
-const db = require("./db/index.js");
+const db = require("./db/gameLibrary.js");
+const myGames = require("./db/myGames.js");
 
 app.use(express.static(path.join(__dirname, "../public/")));
 app.use(express.json());
@@ -111,6 +112,45 @@ app.get("/games/trailers", (req, res) => {
       console.log(err);
     });
   console.log(req.query.id);
+});
+
+app.post("/wishlist", (req, res) => {
+  //console.log(req.body);
+  return myGames
+    .addGames(req.body.game)
+    .then((data) => {
+      console.log("posted");
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+app.get("/wishlist", (req, res) => {
+  return myGames
+    .getWishlist()
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+app.get("/wishlist/game", (req, res) => {
+  return myGames
+    .checkGame(req.query.id)
+    .then((data) => {
+      if (data.length === 0) {
+        res.send(false);
+      } else {
+        res.send(true);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 app.get("/*", function (req, res) {

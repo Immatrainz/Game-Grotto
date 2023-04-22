@@ -18,7 +18,7 @@ const customStyles = {
     boxShadow: "4px 5px 1px #9E9E9E",
     transform: "translate(-50%, -50%)",
   },
-  overlay: { zIndex: 9999 },
+  overlay: { zIndex: 9000 },
 };
 
 const GameModal = () => {
@@ -27,12 +27,15 @@ const GameModal = () => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [gameDetails, setGameDetails] = React.useState({});
   const [gameTrailers, setGameTrailers] = React.useState({});
+  const [added, setAdded] = React.useState(false);
+  const [justAdded, setJustAdded] = React.useState(false);
 
   useEffect(() => {
     if (Object.keys(clickedGame).length > 0) {
       setIsOpen(true);
       // getGameDetails();
       // getGameTrailers();
+      getIfAdded();
       setGameTrailers({
         480: "https://steamcdn-a.akamaihd.net/steam/apps/256676833/movie480.mp4",
         max: "https://steamcdn-a.akamaihd.net/steam/apps/256676833/movie_max.mp4",
@@ -196,6 +199,37 @@ const GameModal = () => {
       });
   };
 
+  let getIfAdded = () => {
+    axios
+      .get("/wishlist/game", { params: { id: clickedGame.id } })
+      .then((res) => {
+        console.log(res.data);
+        if (res.data === false) {
+          setAdded(false);
+        } else {
+          setAdded(true);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleWishlistClick = () => {
+    axios
+      .post("/wishlist", { game: clickedGame })
+      .then((res) => {
+        console.log("successfully posted");
+        getIfAdded();
+        setJustAdded(true);
+        setTimeout(() => {
+          setJustAdded(false);
+        }, 3000);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <>
       <Modal
@@ -205,6 +239,29 @@ const GameModal = () => {
         style={customStyles}
         contentLabel="Game Modal"
       >
+        {justAdded && (
+          <div
+            className="alert alert-success shadow-lg absolute"
+            style={{ width: 1250 + "px" }}
+          >
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="stroke-current flex-shrink-0 h-6 w-6 "
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <span>Added to library!</span>
+            </div>
+          </div>
+        )}
         <div className="grid grid-cols-2">
           <div>
             <h1 className="text-5xl h-36">{gameDetails.name}</h1>
@@ -245,7 +302,13 @@ const GameModal = () => {
             </p>
             {/* <div className='flex'>Developers: {gameDetails.developers && gameDetails.developers.map(developer => {return(<p className='ml-2'>{developer.name}</p>)})}</div>
             <div className='flex'>Genres: {gameDetails.genres && gameDetails.genres.map(genre => {return(<p className='ml-2'>{genre.name}</p>)})}</div> */}
-            <button className="btn">Add to Wishlist</button>
+            {added ? (
+              <button className="btn btn-disabled">Already Added</button>
+            ) : (
+              <button onClick={handleWishlistClick} className="btn">
+                Add to Wishlist
+              </button>
+            )}
           </div>
         </div>
       </Modal>

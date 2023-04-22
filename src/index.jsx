@@ -59,7 +59,15 @@ const App = () => {
               </GameContext.Provider>
             }
           ></Route>
-          <Route exact path="/wishlist" element={<Wishlist />}></Route>
+          <Route
+            exact
+            path="/wishlist"
+            element={
+              <GameContext.Provider value={{ clickedGame, setClickedGame }}>
+                <Wishlist />
+              </GameContext.Provider>
+            }
+          ></Route>
         </Routes>
       </div>
     </Router>

@@ -25,12 +25,12 @@ const MainPage = ({ genreCatalog }) => {
           className="object-contain w-14 h-14"
           src="/assets/scream.png"
         ></img>
-        <h2 className="ml-3">
+        <h2 className="ml-3 logo">
           <span className="text-5xl">G</span>AME{"\n"}
           <span className="text-5xl">G</span>ROTTO
         </h2>
         <div class="dropdown ml-2 mr-5">
-          <label tabindex="0" class="btn m-1">
+          <label tabindex="0" class="btn m-1 bg-blue-950">
             Genres
           </label>
           <div
@@ -55,7 +55,7 @@ const MainPage = ({ genreCatalog }) => {
           </div>
         </div>
         <NavLink to="/wishlist">
-          <button className="btn">Wishlist</button>
+          <button className="btn bg-blue-950">Wishlist</button>
         </NavLink>
       </h1>
       <GameContext.Provider value={{ clickedGame, setClickedGame }}>
