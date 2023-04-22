@@ -5,6 +5,7 @@ const port = 3000;
 const axios = require("axios");
 const db = require("./db/gameLibrary.js");
 const myGames = require("./db/myGames.js");
+const con = require("../config.js");
 
 app.use(express.static(path.join(__dirname, "../public/")));
 app.use(express.json());

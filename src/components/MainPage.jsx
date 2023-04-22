@@ -7,9 +7,13 @@ import TopRatedGames from "./TopRatedGames.jsx";
 import NewGames from "./NewGames.jsx";
 import GenreSearch from "./GenreSearch.jsx";
 import GameModal from "./GameModal.jsx";
+import LoginButton from "./Login.jsx";
+import LogoutButton from "./Logout.jsx";
 import { GenreContext, GameContext } from "../index.jsx";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const MainPage = ({ genreCatalog }) => {
+  const { isAuthenticated } = useAuth0();
   const { clickedGenre, setClickedGenre } = useContext(GenreContext);
   const { clickedGame, setClickedGame } = useContext(GameContext);
 
@@ -57,6 +61,9 @@ const MainPage = ({ genreCatalog }) => {
         <NavLink to="/wishlist">
           <button className="btn bg-blue-950">Wishlist</button>
         </NavLink>
+        <div className="navbar-nav ml-auto">
+          {isAuthenticated ? <LogoutButton /> : <LoginButton />}
+        </div>
       </h1>
       <GameContext.Provider value={{ clickedGame, setClickedGame }}>
         <NewGames />

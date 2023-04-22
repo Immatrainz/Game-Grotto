@@ -9,6 +9,8 @@ import MainPage from "./components/MainPage.jsx";
 import GenrePage from "./components/GenrePage.jsx";
 import Wishlist from "./components/Wishlist.jsx";
 import { createRoot } from "react-dom/client";
+import { Auth0Provider } from "@auth0/auth0-react";
+const config = require("../config.js");
 
 const root = createRoot(document.getElementById("root"));
 const GenreContext = React.createContext("");
@@ -31,45 +33,53 @@ const App = () => {
 
   return (
     <Router>
-      <div>
-        <Routes>
-          <Route
-            exact
-            path="/"
-            element={
-              <GameContext.Provider value={{ clickedGame, setClickedGame }}>
-                <GenreContext.Provider
-                  value={{ clickedGenre, setClickedGenre }}
-                >
-                  <MainPage genreCatalog={genreCatalog} />
-                </GenreContext.Provider>
-              </GameContext.Provider>
-            }
-          ></Route>
-          <Route
-            exact
-            path="/genres"
-            element={
-              <GameContext.Provider value={{ clickedGame, setClickedGame }}>
-                <GenreContext.Provider
-                  value={{ clickedGenre, setClickedGenre }}
-                >
-                  <GenrePage />
-                </GenreContext.Provider>
-              </GameContext.Provider>
-            }
-          ></Route>
-          <Route
-            exact
-            path="/wishlist"
-            element={
-              <GameContext.Provider value={{ clickedGame, setClickedGame }}>
-                <Wishlist />
-              </GameContext.Provider>
-            }
-          ></Route>
-        </Routes>
-      </div>
+      <Auth0Provider
+        domain={config.domain}
+        clientId={config.clientID}
+        authorizationParams={{
+          redirect_uri: "http://localhost:3000/",
+        }}
+      >
+        <div>
+          <Routes>
+            <Route
+              exact
+              path="/"
+              element={
+                <GameContext.Provider value={{ clickedGame, setClickedGame }}>
+                  <GenreContext.Provider
+                    value={{ clickedGenre, setClickedGenre }}
+                  >
+                    <MainPage genreCatalog={genreCatalog} />
+                  </GenreContext.Provider>
+                </GameContext.Provider>
+              }
+            ></Route>
+            <Route
+              exact
+              path="/genres"
+              element={
+                <GameContext.Provider value={{ clickedGame, setClickedGame }}>
+                  <GenreContext.Provider
+                    value={{ clickedGenre, setClickedGenre }}
+                  >
+                    <GenrePage />
+                  </GenreContext.Provider>
+                </GameContext.Provider>
+              }
+            ></Route>
+            <Route
+              exact
+              path="/wishlist"
+              element={
+                <GameContext.Provider value={{ clickedGame, setClickedGame }}>
+                  <Wishlist />
+                </GameContext.Provider>
+              }
+            ></Route>
+          </Routes>
+        </div>
+      </Auth0Provider>
     </Router>
   );
 };

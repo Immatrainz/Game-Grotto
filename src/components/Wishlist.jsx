@@ -1,6 +1,7 @@
 import React from "react";
 import GameModal from "./GameModal.jsx";
 import { GameContext } from "../index.jsx";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 const axios = require("axios");
 import {
   faXbox,
@@ -97,4 +98,4 @@ const Wishlist = () => {
   );
 };
 
-export default Wishlist;
+export default withAuthenticationRequired(Wishlist);
