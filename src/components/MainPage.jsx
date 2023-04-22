@@ -13,7 +13,7 @@ import { GenreContext, GameContext } from "../index.jsx";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const MainPage = ({ genreCatalog }) => {
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, isLoading, user } = useAuth0();
   const { clickedGenre, setClickedGenre } = useContext(GenreContext);
   const { clickedGame, setClickedGame } = useContext(GameContext);
 
@@ -21,6 +21,10 @@ const MainPage = ({ genreCatalog }) => {
     console.log(e.target.innerHTML);
     setClickedGenre(e.target.innerHTML);
   };
+
+  if (isLoading) {
+    return <div>Loading ...</div>;
+  }
 
   return (
     <div>
@@ -62,7 +66,13 @@ const MainPage = ({ genreCatalog }) => {
           <button className="btn bg-blue-950">Wishlist</button>
         </NavLink>
         <div className="navbar-nav ml-auto">
-          {isAuthenticated ? <LogoutButton /> : <LoginButton />}
+          {isAuthenticated ? (
+            <div>
+              <p>{user.name}</p> <LogoutButton />
+            </div>
+          ) : (
+            <LoginButton />
+          )}
         </div>
       </h1>
       <GameContext.Provider value={{ clickedGame, setClickedGame }}>

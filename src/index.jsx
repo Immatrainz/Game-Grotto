@@ -9,7 +9,7 @@ import MainPage from "./components/MainPage.jsx";
 import GenrePage from "./components/GenrePage.jsx";
 import Wishlist from "./components/Wishlist.jsx";
 import { createRoot } from "react-dom/client";
-import { Auth0Provider } from "@auth0/auth0-react";
+import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
 const config = require("../config.js");
 
 const root = createRoot(document.getElementById("root"));
@@ -36,9 +36,8 @@ const App = () => {
       <Auth0Provider
         domain={config.domain}
         clientId={config.clientID}
-        authorizationParams={{
-          redirect_uri: "http://localhost:3000/",
-        }}
+        secret={config.secret}
+        redirectUri={window.location.origin}
       >
         <div>
           <Routes>
