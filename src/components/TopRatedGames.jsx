@@ -54,8 +54,9 @@ const TopRatedGames = () => {
       <h1>POPULAR</h1>
       <GameContext.Provider value={{ clickedGame, setClickedGame }}>
         <Carousel
+          infinite={true}
           autoPlay={true}
-          autoPlaySpeed={2000}
+          autoPlaySpeed={1500}
           swipeable={true}
           draggable={true}
           responsive={responsive}
