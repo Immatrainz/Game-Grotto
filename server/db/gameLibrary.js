@@ -40,6 +40,41 @@ const gameSchema = new mongoose.Schema({
 
 const Game = mongoose.model("Game", gameSchema);
 
+// const codingSim = new Game({
+//   id: 34857384573607,
+//   slug: "coding-sim",
+//   name: "Coding Simulator",
+//   released: "2023-04-20",
+//   tba: false,
+//   background_image: "/assets/codingsim.png",
+//   rating: 5.0,
+//   rating_top: 5,
+//   ratings: [],
+//   ratings_count: 0,
+//   reviews_text_count: 0,
+//   added: 9999,
+//   added_by_status: {},
+//   metacritic: 100,
+//   playtime: 9999,
+//   suggestions_count: 0,
+//   updated: "2023-04-23T10:53:38",
+//   user_game: null,
+//   reviews_count: 0,
+//   saturated_color: "0f0f0f",
+//   dominant_color: "0f0f0f",
+//   platforms: ["PC"],
+//   parent_platforms: [],
+//   genres: ["Adventure", "Action", "RPG", "Indie"],
+//   stores: [],
+//   clip: null,
+//   tags: ["Singleplayer", "Puzzle", "Atmospheric", "Story Rich", "First Person"],
+//   esrb_rating: { id: 1, name: "Everyone", slug: "everyone" },
+//   short_screenshots: ["assets/codingsim.png"],
+//   __v: 0,
+// });
+
+// codingSim.save();
+
 const topRatedGames = (data) => {
   const newGame = new Game(data);
   newGame.save();

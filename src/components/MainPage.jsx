@@ -2,7 +2,6 @@ import React, { useEffect, useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
 
 import { createRoot } from "react-dom/client";
-import Monitor from "./Monitor.jsx";
 import TopRatedGames from "./TopRatedGames.jsx";
 import NewGames from "./NewGames.jsx";
 import GenreSearch from "./GenreSearch.jsx";
@@ -62,13 +61,15 @@ const MainPage = ({ genreCatalog }) => {
             </div>
           </div>
         </div>
-        <NavLink to="/wishlist">
-          <button className="btn bg-blue-950">Wishlist</button>
-        </NavLink>
+        {isAuthenticated && (
+          <NavLink to="/wishlist">
+            <button className="btn bg-blue-950">Wishlist</button>
+          </NavLink>
+        )}
         <div className="navbar-nav ml-auto">
           {isAuthenticated ? (
-            <div>
-              <p>{user.name}</p> <LogoutButton />
+            <div className="flex gap-4">
+              <p className="self-center">{user.name}</p> <LogoutButton />
             </div>
           ) : (
             <LoginButton />
@@ -88,7 +89,7 @@ const MainPage = ({ genreCatalog }) => {
             src="/assets/scream.png"
           ></img>
           <p>
-            SCREAM Industries
+            Game Grotto
             <br />
             Reinventing game search since 2023
           </p>

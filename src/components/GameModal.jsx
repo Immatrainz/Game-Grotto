@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
 const axios = require("axios");
 import Modal from "react-modal";
+import { NavLink } from "react-router-dom";
 import { GameContext } from "../index.jsx";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const customStyles = {
   content: {
@@ -22,6 +24,7 @@ const customStyles = {
 };
 
 const GameModal = () => {
+  const { isAuthenticated, isLoading, user } = useAuth0();
   const { clickedGame, setClickedGame } = React.useContext(GameContext);
 
   const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -33,140 +36,253 @@ const GameModal = () => {
   useEffect(() => {
     if (Object.keys(clickedGame).length > 0) {
       setIsOpen(true);
-      // getGameDetails();
-      // getGameTrailers();
       getIfAdded();
-      setGameTrailers({
-        480: "https://steamcdn-a.akamaihd.net/steam/apps/256676833/movie480.mp4",
-        max: "https://steamcdn-a.akamaihd.net/steam/apps/256676833/movie_max.mp4",
-      });
-      setGameDetails({
-        id: 455597,
-        slug: "it-takes-two-2",
-        name: "It Takes Two",
-        name_original: "It Takes Two",
-        description:
-          "<p>Bring your favorite co-op partner and together step into the shoes of May and Cody. As the couple is going through a divorce, through unknown means their minds are transported into two dolls which their daughter, Rose, made to represent them. Now they must reluctantly find a way to get back into their bodies, a quest which takes them through the most wild, unexpected and fantastical journey imaginable.</p>\n" +
-          "<p>It Takes Two further builds on Hazelight’s proven track record of making rich and engaging co-op experiences. While developing It Takes Two it has been the team’s number one priority to truly merge story and gameplay. Allowing both to influence each other guarantees a game that is as engaging to play as it is compelling to experience.</p>",
-        metacritic: 88,
-        metacritic_platforms: [
-          [Object],
-          [Object],
-          [Object],
-          [Object],
-          [Object],
-        ],
-        released: "2021-03-26",
-        tba: false,
-        updated: "2023-04-20T01:29:14",
-        background_image:
-          "https://media.rawg.io/media/games/d47/d479582ed0a46496ad34f65c7099d7e5.jpg",
-        background_image_additional:
-          "https://media.rawg.io/media/screenshots/0da/0da98b6c57676f2f16cb6bf8818c8642.jpg",
-        website: "https://hazelight.se/games/it-takes-two/",
-        rating: 4.54,
-        rating_top: 5,
-        ratings: [[Object], [Object], [Object], [Object]],
-        reactions: {
-          1: 9,
-          3: 3,
-          5: 2,
-          6: 1,
-          7: 4,
-          8: 10,
-          9: 2,
-          10: 1,
-          11: 1,
-          12: 1,
-        },
-        added: 3853,
-        added_by_status: {
-          yet: 194,
-          owned: 1934,
-          beaten: 899,
-          toplay: 515,
-          dropped: 123,
-          playing: 188,
-        },
-        playtime: 10,
-        screenshots_count: 19,
-        movies_count: 0,
-        creators_count: 1,
-        achievements_count: 55,
-        parent_achievements_count: 19,
-        reddit_url: "",
-        reddit_name: "",
-        reddit_description: "",
-        reddit_logo: "",
-        reddit_count: 0,
-        twitch_count: 120,
-        youtube_count: 1000000,
-        reviews_text_count: 27,
-        ratings_count: 1029,
-        suggestions_count: 793,
-        alternative_names: [],
-        metacritic_url:
-          "https://www.metacritic.com/game/playstation-5/it-takes-two",
-        parents_count: 0,
-        additions_count: 1,
-        game_series_count: 0,
-        user_game: null,
-        reviews_count: 1056,
-        saturated_color: "0f0f0f",
-        dominant_color: "0f0f0f",
-        parent_platforms: [[Object], [Object], [Object], [Object]],
-        platforms: [[Object], [Object], [Object], [Object], [Object], [Object]],
-        stores: [[Object], [Object], [Object], [Object]],
-        developers: [[Object]],
-        genres: [[Object], [Object], [Object]],
-        tags: [
-          [Object],
-          [Object],
-          [Object],
-          [Object],
-          [Object],
-          [Object],
-          [Object],
-          [Object],
-          [Object],
-          [Object],
-          [Object],
-          [Object],
-          [Object],
-          [Object],
-          [Object],
-          [Object],
-          [Object],
-          [Object],
-          [Object],
-          [Object],
-          [Object],
-          [Object],
-          [Object],
-          [Object],
-          [Object],
-          [Object],
-          [Object],
-          [Object],
-          [Object],
-          [Object],
-          [Object],
-          [Object],
-          [Object],
-          [Object],
-          [Object],
-          [Object],
-          [Object],
-          [Object],
-        ],
-        publishers: [[Object]],
-        esrb_rating: { id: 2, name: "Everyone 10+", slug: "everyone-10-plus" },
-        clip: null,
-        description_raw:
-          "Bring your favorite co-op partner and together step into the shoes of May and Cody. As the couple is going through a divorce, through unknown means their minds are transported into two dolls which their daughter, Rose, made to represent them. Now they must reluctantly find a way to get back into their bodies, a quest which takes them through the most wild, unexpected and fantastical journey imaginable.\r\n" +
-          "\r\n" +
-          "It Takes Two further builds on Hazelight’s proven track record of making rich and engaging co-op experiences. While developing It Takes Two it has been the team’s number one priority to truly merge story and gameplay. Allowing both to influence each other guarantees a game that is as engaging to play as it is compelling to experience.",
-      });
+      if (clickedGame.id === 34857384573607) {
+        setGameTrailers({});
+        setGameDetails({
+          id: 34857384573607,
+          slug: "coding-sim",
+          name: "Coding Simulator",
+          name_original: "It Takes Two",
+          description: "<p>Just Coding.</p>",
+          metacritic: 100,
+          metacritic_platforms: [
+            [Object],
+            [Object],
+            [Object],
+            [Object],
+            [Object],
+          ],
+          released: "2023-04-20",
+          tba: false,
+          updated: "2023-04-20T01:29:14",
+          background_image: "/assets/codingsim.png",
+          background_image_additional:
+            "https://media.rawg.io/media/screenshots/0da/0da98b6c57676f2f16cb6bf8818c8642.jpg",
+          website: "https://hazelight.se/games/it-takes-two/",
+          rating: 5,
+          rating_top: 5,
+          ratings: [[Object], [Object], [Object], [Object]],
+          reactions: {
+            1: 9,
+            3: 3,
+            5: 2,
+            6: 1,
+            7: 4,
+            8: 10,
+            9: 2,
+            10: 1,
+            11: 1,
+            12: 1,
+          },
+          added: 3853,
+          added_by_status: {
+            yet: 194,
+            owned: 1934,
+            beaten: 899,
+            toplay: 515,
+            dropped: 123,
+            playing: 188,
+          },
+          playtime: 10,
+          screenshots_count: 19,
+          movies_count: 0,
+          creators_count: 1,
+          achievements_count: 55,
+          parent_achievements_count: 19,
+          reddit_url: "",
+          reddit_name: "",
+          reddit_description: "",
+          reddit_logo: "",
+          reddit_count: 0,
+          twitch_count: 120,
+          youtube_count: 1000000,
+          reviews_text_count: 27,
+          ratings_count: 1029,
+          suggestions_count: 793,
+          alternative_names: [],
+          metacritic_url:
+            "https://www.metacritic.com/game/playstation-5/it-takes-two",
+          parents_count: 0,
+          additions_count: 1,
+          game_series_count: 0,
+          user_game: null,
+          reviews_count: 1056,
+          saturated_color: "0f0f0f",
+          dominant_color: "0f0f0f",
+          parent_platforms: [[Object], [Object], [Object], [Object]],
+          platforms: [
+            [Object],
+            [Object],
+            [Object],
+            [Object],
+            [Object],
+            [Object],
+          ],
+          stores: [[Object], [Object], [Object], [Object]],
+          developers: [{ name: "Not Xiao Wen" }],
+          genres: [
+            { name: "Action" },
+            { name: "Adventure" },
+            { name: "RPG" },
+            { name: "Puzzle" },
+          ],
+          tags: [[Object], [Object], [Object], [Object], [Object], [Object]],
+          publishers: [[Object]],
+          esrb_rating: {
+            id: 2,
+            name: "Everyone 10+",
+            slug: "everyone-10-plus",
+          },
+          clip: null,
+          description_raw: "Just Coding.",
+        });
+      } else {
+        getGameDetails();
+        getGameTrailers();
+        // setGameTrailers({
+        //   480: "https://steamcdn-a.akamaihd.net/steam/apps/256676833/movie480.mp4",
+        //   max: "https://steamcdn-a.akamaihd.net/steam/apps/256676833/movie_max.mp4",
+        // });
+        // setGameDetails({
+        //   id: 455597,
+        //   slug: "it-takes-two-2",
+        //   name: "It Takes Two",
+        //   name_original: "It Takes Two",
+        //   description:
+        //     "<p>Bring your favorite co-op partner and together step into the shoes of May and Cody. As the couple is going through a divorce, through unknown means their minds are transported into two dolls which their daughter, Rose, made to represent them. Now they must reluctantly find a way to get back into their bodies, a quest which takes them through the most wild, unexpected and fantastical journey imaginable.</p>\n" +
+        //     "<p>It Takes Two further builds on Hazelight’s proven track record of making rich and engaging co-op experiences. While developing It Takes Two it has been the team’s number one priority to truly merge story and gameplay. Allowing both to influence each other guarantees a game that is as engaging to play as it is compelling to experience.</p>",
+        //   metacritic: 88,
+        //   metacritic_platforms: [
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //   ],
+        //   released: "2021-03-26",
+        //   tba: false,
+        //   updated: "2023-04-20T01:29:14",
+        //   background_image:
+        //     "https://media.rawg.io/media/games/d47/d479582ed0a46496ad34f65c7099d7e5.jpg",
+        //   background_image_additional:
+        //     "https://media.rawg.io/media/screenshots/0da/0da98b6c57676f2f16cb6bf8818c8642.jpg",
+        //   website: "https://hazelight.se/games/it-takes-two/",
+        //   rating: 4.54,
+        //   rating_top: 5,
+        //   ratings: [[Object], [Object], [Object], [Object]],
+        //   reactions: {
+        //     1: 9,
+        //     3: 3,
+        //     5: 2,
+        //     6: 1,
+        //     7: 4,
+        //     8: 10,
+        //     9: 2,
+        //     10: 1,
+        //     11: 1,
+        //     12: 1,
+        //   },
+        //   added: 3853,
+        //   added_by_status: {
+        //     yet: 194,
+        //     owned: 1934,
+        //     beaten: 899,
+        //     toplay: 515,
+        //     dropped: 123,
+        //     playing: 188,
+        //   },
+        //   playtime: 10,
+        //   screenshots_count: 19,
+        //   movies_count: 0,
+        //   creators_count: 1,
+        //   achievements_count: 55,
+        //   parent_achievements_count: 19,
+        //   reddit_url: "",
+        //   reddit_name: "",
+        //   reddit_description: "",
+        //   reddit_logo: "",
+        //   reddit_count: 0,
+        //   twitch_count: 120,
+        //   youtube_count: 1000000,
+        //   reviews_text_count: 27,
+        //   ratings_count: 1029,
+        //   suggestions_count: 793,
+        //   alternative_names: [],
+        //   metacritic_url:
+        //     "https://www.metacritic.com/game/playstation-5/it-takes-two",
+        //   parents_count: 0,
+        //   additions_count: 1,
+        //   game_series_count: 0,
+        //   user_game: null,
+        //   reviews_count: 1056,
+        //   saturated_color: "0f0f0f",
+        //   dominant_color: "0f0f0f",
+        //   parent_platforms: [[Object], [Object], [Object], [Object]],
+        //   platforms: [
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //   ],
+        //   stores: [[Object], [Object], [Object], [Object]],
+        //   developers: [[Object]],
+        //   genres: [[Object], [Object], [Object]],
+        //   tags: [
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //     [Object],
+        //   ],
+        //   publishers: [[Object]],
+        //   esrb_rating: {
+        //     id: 2,
+        //     name: "Everyone 10+",
+        //     slug: "everyone-10-plus",
+        //   },
+        //   clip: null,
+        //   description_raw:
+        //     "Bring your favorite co-op partner and together step into the shoes of May and Cody. As the couple is going through a divorce, through unknown means their minds are transported into two dolls which their daughter, Rose, made to represent them. Now they must reluctantly find a way to get back into their bodies, a quest which takes them through the most wild, unexpected and fantastical journey imaginable.\r\n" +
+        //     "\r\n" +
+        //     "It Takes Two further builds on Hazelight’s proven track record of making rich and engaging co-op experiences. While developing It Takes Two it has been the team’s number one priority to truly merge story and gameplay. Allowing both to influence each other guarantees a game that is as engaging to play as it is compelling to experience.",
+        // });
+      }
     }
   }, [clickedGame]);
 
@@ -265,33 +381,41 @@ const GameModal = () => {
         <div className="grid grid-cols-2">
           <div>
             <h1 className="text-5xl h-36">{gameDetails.name}</h1>
-            <a href={gameDetails.website} target="_blank">
-              Link to Game Site
-            </a>
-            <Carousel showThumbs={false}>
-              {Object.keys(gameTrailers).length === 0 ? (
-                <img
-                  className="game-modal-image object-contain"
-                  src={gameDetails.background_image}
-                ></img>
-              ) : (
-                <video
-                  className="game-modal-image"
-                  src={gameTrailers.max}
-                  controls="controls"
-                  autoPlay={true}
-                />
-              )}
-              {clickedGame.short_screenshots &&
-                clickedGame.short_screenshots.slice(1).map((ss) => {
-                  return (
-                    <img
-                      className="game-modal-image pt-5 pr-5"
-                      src={ss.image}
-                    ></img>
-                  );
-                })}
-            </Carousel>
+            {gameDetails.id === 34857384573607 ? (
+              <NavLink to="/codingsim">
+                <p>Play now!</p>
+              </NavLink>
+            ) : (
+              <a href={gameDetails.website} target="_blank">
+                Link to Game Site
+              </a>
+            )}
+            <div className="w-[550px]">
+              <Carousel showThumbs={false}>
+                {Object.keys(gameTrailers).length === 0 ? (
+                  <img
+                    className="game-modal-image object-contain"
+                    src={gameDetails.background_image}
+                  ></img>
+                ) : (
+                  <video
+                    className="game-modal-image"
+                    src={gameTrailers.max}
+                    controls="controls"
+                    autoPlay={true}
+                  />
+                )}
+                {clickedGame.short_screenshots &&
+                  clickedGame.short_screenshots.slice(1).map((ss) => {
+                    return (
+                      <img
+                        className="game-modal-image object-contain pt-5 pr-5"
+                        src={ss.image}
+                      ></img>
+                    );
+                  })}
+              </Carousel>
+            </div>
           </div>
           <div className="flex flex-col mt-5 justify-between">
             <p>{gameDetails.description_raw}</p>
@@ -300,13 +424,31 @@ const GameModal = () => {
             <p>
               Rating: {gameDetails.esrb_rating && gameDetails.esrb_rating.name}
             </p>
-            {/* <div className='flex'>Developers: {gameDetails.developers && gameDetails.developers.map(developer => {return(<p className='ml-2'>{developer.name}</p>)})}</div>
-            <div className='flex'>Genres: {gameDetails.genres && gameDetails.genres.map(genre => {return(<p className='ml-2'>{genre.name}</p>)})}</div> */}
-            {added ? (
-              <button className="btn btn-disabled">Already Added</button>
+            <div className="flex">
+              Developers:{" "}
+              {gameDetails.developers &&
+                gameDetails.developers.map((developer) => {
+                  return <p className="ml-2">{developer.name}</p>;
+                })}
+            </div>
+            <div className="flex">
+              Genres:{" "}
+              {gameDetails.genres &&
+                gameDetails.genres.map((genre) => {
+                  return <p className="ml-2">{genre.name}</p>;
+                })}
+            </div>
+            {isAuthenticated ? (
+              added ? (
+                <button className="btn btn-disabled">Already Added</button>
+              ) : (
+                <button onClick={handleWishlistClick} className="btn">
+                  Add to Wishlist
+                </button>
+              )
             ) : (
-              <button onClick={handleWishlistClick} className="btn">
-                Add to Wishlist
+              <button className="btn btn-disabled">
+                Login to add to Wishlist!
               </button>
             )}
           </div>

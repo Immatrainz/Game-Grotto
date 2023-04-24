@@ -8,6 +8,7 @@ import {
 import MainPage from "./components/MainPage.jsx";
 import GenrePage from "./components/GenrePage.jsx";
 import Wishlist from "./components/Wishlist.jsx";
+import CodingSim from "./components/CodingSim.jsx";
 import { createRoot } from "react-dom/client";
 import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
 const config = require("../config.js");
@@ -76,6 +77,7 @@ const App = () => {
                 </GameContext.Provider>
               }
             ></Route>
+            <Route exact path="/codingsim" element={<CodingSim />}></Route>
           </Routes>
         </div>
       </Auth0Provider>

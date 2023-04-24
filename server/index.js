@@ -19,7 +19,7 @@ app.listen(port, () => {
 //   url: "https://api.rawg.io/api/games",
 //   params: {
 //     key: "5f7521f30d86436e9fd3c6ceadefeaaa",
-//     page: 101,
+//     page: 150,
 //     page_size: 40,
 //   },
 // };
