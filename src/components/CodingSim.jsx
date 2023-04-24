@@ -20,6 +20,7 @@ const CodingSim = () => {
     const canvas = document.getElementById("threeJSCanvas");
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setClearColor(0xffffff, 0);
     document.body.appendChild(renderer.domElement);
 
@@ -85,7 +86,7 @@ const CodingSim = () => {
 
     const bgLoader = new THREE.TextureLoader();
     bgLoader.load(
-      "https://images.unsplash.com/photo-1519806870789-d65fc19601fa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+      "https://images.unsplash.com/photo-1473893604213-3df9c15611c0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80",
       (texture) => {
         scene.background = texture;
       }

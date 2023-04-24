@@ -81,7 +81,7 @@ const topRatedGames = (data) => {
 };
 
 const getTopRatedGames = () => {
-  return Game.find().limit(10);
+  return Game.find().limit(30);
 };
 
 const getNewGames = () => {

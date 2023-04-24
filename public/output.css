@@ -4172,18 +4172,6 @@ html {
   height: 15rem;
 }
 
-.h-\[1000px\] {
-  height: 1000px;
-}
-
-.h-\[300px\] {
-  height: 300px;
-}
-
-.h-\[250px\] {
-  height: 250px;
-}
-
 .w-14 {
   width: 3.5rem;
 }
@@ -4210,10 +4198,6 @@ html {
 
 .w-80 {
   width: 20rem;
-}
-
-.w-\[500px\] {
-  width: 500px;
 }
 
 .w-\[550px\] {
