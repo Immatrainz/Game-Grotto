@@ -14,26 +14,29 @@ const CodingSim = () => {
       1000
     );
 
-    camera.position.z = -10;
+    camera.position.z = -5.5;
     camera.position.y = 2;
 
     const canvas = document.getElementById("threeJSCanvas");
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setClearColor(0xffffff, 0);
+    renderer.setClearColor("#5E606D", 0);
+    renderer.toneMapping = THREE.ReinhardToneMapping;
+    renderer.shadowMap.enabled = true;
     document.body.appendChild(renderer.domElement);
 
     const ambientLight = new THREE.AmbientLight(0xffffff);
     scene.add(ambientLight);
 
-    const pointLight = new THREE.PointLight(0xffffff, 1);
-    camera.add(pointLight);
-    scene.add(camera);
+    const light = new THREE.DirectionalLight(0xffffff, 1);
+    light.position.set(0, 1, -2); //default; light shining from top
+    light.castShadow = true; // default false
+    scene.add(light);
 
     const spotLight = new THREE.SpotLight(0xffffff, 1);
     spotLight.castShadow = true;
-    spotLight.position.set(10, 30, 0);
+    spotLight.position.set(4.5, -1.23, 0);
     scene.add(spotLight);
 
     let macbook;
@@ -43,9 +46,10 @@ const CodingSim = () => {
       (gltf) => {
         macbook = gltf.scene;
         macbook.position.set(0, -2, 0);
-        console.log(macbook);
+        // console.log(macbook);
         macbook.getObjectByName("Cube004").material.color.set("#000000");
         macbook.getObjectByName("Cube004_4").material.color.set("#ffffff");
+        macbook.getObjectByName("Cube004_1").material.emissiveIntensity = 10;
         scene.add(gltf.scene);
       },
       undefined,
@@ -53,6 +57,12 @@ const CodingSim = () => {
         console.log(err);
       }
     );
+
+    var textureLoader = new THREE.TextureLoader();
+    textureLoader.load("codingsim.png", function (texture) {
+      macbook.getObjectByName("Cube004_1").material.map.needsUpdate = true;
+      macbook.getObjectByName("Cube004_1").material.map = texture;
+    });
 
     loader.load(
       "/Desk0.5.glb",
@@ -72,10 +82,12 @@ const CodingSim = () => {
       "/Monitor.glb",
       (gltf) => {
         scene.add(gltf.scene);
+        console.log(gltf.scene);
         gltf.scene.scale.set(0.1, 0.1, 0.1);
         gltf.scene.position.set(4.5, -1.23, -1);
-        gltf.scene.getObjectByName("Monitor").material.color.set("#cdb2db");
+        gltf.scene.getObjectByName("Monitor").material.color.set("#2E2F34");
         gltf.scene.getObjectByName("Base").material.color.set("#443a4a");
+        gltf.scene.getObjectByName("Screen").material.emissiveIntensity = 10;
         gltf.scene.rotateY(Math.PI / 1.6);
       },
       undefined,
@@ -94,7 +106,7 @@ const CodingSim = () => {
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableZoom = false;
-    controls.enableRotate = false;
+    // controls.enableRotate = false;
     controls.enablePan = false;
 
     const animate = () => {
@@ -107,7 +119,7 @@ const CodingSim = () => {
     animate();
   }, []);
   return (
-    <div>
+    <div className="absolute">
       <canvas id="threeJSCanvas"></canvas>
     </div>
   );

@@ -60,7 +60,7 @@ app.get("/games/new", (req, res) => {
 });
 
 app.get("/games/genre", (req, res) => {
-  console.log(req.query.genre);
+  //console.log(req.query.genre);
   return db
     .getByGenre(req.query.genre)
     .then((data) => {
