@@ -19,7 +19,7 @@ app.listen(port, () => {
 //   url: "https://api.rawg.io/api/games",
 //   params: {
 //     key: "5f7521f30d86436e9fd3c6ceadefeaaa",
-//     page: 150,
+//     page: 200,
 //     page_size: 40,
 //   },
 // };
@@ -27,7 +27,7 @@ app.listen(port, () => {
 // axios
 //   .request(options)
 //   .then(function (response) {
-//     //console.log(response);
+//     // console.log(response);
 //     let data = response.data.results;
 //     data.forEach((game) => {
 //       db.topRatedGames(game);

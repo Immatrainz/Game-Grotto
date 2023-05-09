@@ -279,7 +279,6 @@ const GameModal = () => {
           <div className="flex flex-col mt-5 justify-between">
             <p>{gameDetails.description_raw}</p>
             <p>Score: {gameDetails.metacritic}</p>
-            <p>Average Playtime: {gameDetails.playtime} hours</p>
             <p>
               Rating: {gameDetails.esrb_rating && gameDetails.esrb_rating.name}
             </p>
