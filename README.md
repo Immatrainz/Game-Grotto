@@ -1,6 +1,6 @@
 # Game Grotto
 
-<img className='w-[100px] h-[100px]' src='/public/assets/scream.png'>
+<img className='w-24 h-24' src='/public/assets/scream.png'>
 
 A website where you can browse video games across all platforms and popular genres.
 
@@ -39,11 +39,11 @@ npm install
 
 5. Create a config file in the project directory with the following contents:
 
-clientID: clientID from AuthO
-secret: secret from AuthO
-domain: domain from AuthO
-key: key from RAWG API
-port: 3000
+- clientID: clientID from AuthO
+- secret: secret from AuthO
+- domain: domain from AuthO
+- key: key from RAWG API
+- port: 3000
 
 6. Start webpack
 
