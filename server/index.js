@@ -1,7 +1,6 @@
 const express = require("express");
 const path = require("path");
 const app = express();
-const port = 3000;
 const axios = require("axios");
 const db = require("./db/gameLibrary.js");
 const myGames = require("./db/myGames.js");
@@ -11,31 +10,8 @@ app.use(express.static(path.join(__dirname, "../public/")));
 app.use(express.json());
 
 app.listen(port, () => {
-  console.log(`listening on port ${port}`);
+  console.log(`listening on port ${con.port}`);
 });
-
-// const options = {
-//   method: "GET",
-//   url: "https://api.rawg.io/api/games",
-//   params: {
-//     key: "5f7521f30d86436e9fd3c6ceadefeaaa",
-//     page: 200,
-//     page_size: 40,
-//   },
-// };
-
-// axios
-//   .request(options)
-//   .then(function (response) {
-//     // console.log(response);
-//     let data = response.data.results;
-//     data.forEach((game) => {
-//       db.topRatedGames(game);
-//     });
-//   })
-//   .catch(function (error) {
-//     console.error(error);
-//   });
 
 app.get("/games/top", (req, res) => {
   return db
@@ -88,7 +64,7 @@ app.get("/games/genrepage", (req, res) => {
 app.get("/games/details", (req, res) => {
   axios
     .get(`https://api.rawg.io/api/games/${req.query.id}`, {
-      params: { key: "5f7521f30d86436e9fd3c6ceadefeaaa" },
+      params: { key: con.key },
     })
     .then((data) => {
       //console.log(data.data);
@@ -103,7 +79,7 @@ app.get("/games/details", (req, res) => {
 app.get("/games/trailers", (req, res) => {
   axios
     .get(`https://api.rawg.io/api/games/${req.query.id}/movies`, {
-      params: { key: "5f7521f30d86436e9fd3c6ceadefeaaa" },
+      params: { key: con.key },
     })
     .then((data) => {
       //console.log(data.data.results[0].data);
