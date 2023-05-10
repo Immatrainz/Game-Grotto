@@ -1,6 +1,8 @@
 # Game Grotto
 
-<img className='w-24 h-24' src='/public/assets/scream.png'>
+<div className='w-24 h-24'>
+  <img src='/public/assets/scream.png'>
+</div>
 
 A website where you can browse video games across all platforms and popular genres.
 
